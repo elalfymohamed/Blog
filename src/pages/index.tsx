@@ -19,7 +19,7 @@ export default function Home({ data = [] }: { data: Post[] }) {
 
   return (
     <>
-      <SEO title="blog" description="blog description" />
+      <SEO title="Blog" description="blog description" />
       <main className={classes.main}>
         <Container className={classes.inner}>
           <h1 className={classes.title}>Posts</h1>
@@ -51,8 +51,8 @@ export async function getStaticProps() {
     queryFn: () => fetchData("users"),
   });
 
-  const posts = queryClient.getQueryData(["posts"]);
-  const users = queryClient.getQueryData(["users"]);
+  const posts = queryClient.getQueryData(["posts"]) as Post[];
+  const users = queryClient.getQueryData(["users"]) as User[];
 
   if (!Array.isArray(posts) || !Array.isArray(users)) {
     return {
@@ -61,9 +61,13 @@ export async function getStaticProps() {
   }
 
   const data = posts?.map((post: Post) => {
+    const user = users?.find((user: User) => user.id === post.userId) as User;
     return {
       ...post,
-      author: users?.find((user: User) => user.id === post.userId)?.name,
+      author: {
+        id: user.id,
+        name: user.name,
+      },
     };
   });
 

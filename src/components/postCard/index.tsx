@@ -40,7 +40,7 @@ export default function PostCard({ title, body, author, id }: Post) {
                     className={classes.image}
                   />
                 </div>
-                <Text size="xs">{author}</Text>
+                <Text size="xs">{author?.name}</Text>
               </Group>
             </Group>
           </div>

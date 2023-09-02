@@ -23,7 +23,7 @@ import { SEO } from "@/components";
 
 import { createPost, fetchData } from "@/api";
 
-import { Post } from "@/libs/types";
+import { Post, User } from "@/libs/types";
 
 const validationSchema = yup.object({
   title: yup
@@ -90,7 +90,7 @@ export default function Page({ users }: { users: UserProps[] }) {
 
   return (
     <>
-      <SEO title="blog" description="blog description" />
+      <SEO title="Create post" description="blog - create post" />
       {(status.isError || status.isSuccess) && (
         <Notification
           withCloseButton={false}
@@ -171,7 +171,7 @@ export async function getStaticProps() {
     queryFn: () => fetchData("users"),
   });
 
-  const users = queryClient.getQueryData(["users"]);
+  const users = queryClient.getQueryData(["users"]) as User[];
 
   if (!Array.isArray(users)) {
     return {

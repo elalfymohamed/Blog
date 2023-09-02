@@ -27,6 +27,7 @@ export default function Page({ data, comments, postsUserId }: Props) {
 
   return (
     <>
+      <SEO title={`Post - ${data.title}`} description={data.body} />
       <section className={classes.section}>
         <Container className={classes.inner}>
           <h1 className={classes.title}>Post</h1>
@@ -96,13 +97,13 @@ export async function getStaticProps({
   });
 
   //  data post
-  const post = queryClient.getQueryData(["post"]);
+  const post = queryClient.getQueryData(["post"]) as Post;
   // data user
-  const users = queryClient.getQueryData(["users"]);
+  const users = queryClient.getQueryData(["users"]) as User[];
   // data comments
-  const comments = queryClient.getQueryData(["comments"]);
+  const comments = queryClient.getQueryData(["comments"]) as Comment[];
   // data more posts
-  const postsUserId = queryClient.getQueryData(["postsUserId"]);
+  const postsUserId = queryClient.getQueryData(["postsUserId"]) as Post[];
 
   if (typeof post !== "object" || !Array.isArray(users)) {
     return {
@@ -110,7 +111,7 @@ export async function getStaticProps({
     };
   }
 
-  const user: User = users?.find((user: User) => user.id === post?.userId);
+  const user = users?.find((user: User) => user.id === post?.userId) as User;
 
   const data = {
     ...post,
