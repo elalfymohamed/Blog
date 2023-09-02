@@ -54,15 +54,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 |    |_pages
 |    |    |_404
 |    |    |_500
-|    |      |_api
-|    |      |_create-post
-|    |      |_post
-|    |      |   |_[id].tsx
-|    |      |_posts
-|    |      |   |_author
-|    |      |       |_[id].tsx
-|    |      |_app.tsx
-|    |      |_index.tsx
+|    |    |_api
+|    |    |_create-post
+|    |    |_post
+|    |    |   |_[id].tsx
+|    |    |_posts
+|    |    |   |_author
+|    |    |       |_[id].tsx
+|    |    |_app.tsx
+|    |    |_index.tsx
 |    |
 |    |_styles
 |
